@@ -16,40 +16,40 @@ const features: Feature[] = [
     title: "Upload & Digitize Your Wardrobe",
     description:
       "Snap or upload your pieces. LookMate auto-tags brand, category, color, pattern, and more—so your closet is searchable and ready for styling.",
-    image: "/images/feature-wardrobe.png",
-    badge: "Enhanced",
+    image: "/images/1image.png",
+   
   },
   {
     title: "AI Stylist with Self-Critique",
     description:
       "Multiple outfits are generated and ranked by an AI critique loop, returning the best fit for your body, preferences, and constraints.",
-    image: "/images/feature-ai-loop.png",
-    badge: "New",
+    image: "/images/2image.png",
+    
   },
   {
     title: "3D Avatar Try-On",
     description:
       "Preview outfits on a 3D avatar that mirrors your proportions. Rotate, zoom, and inspect details before you wear it IRL.",
-    image: "/images/feature-avatar.png",
-    badge: "Coming Soon",
+    image: "/images/3image.png",
+   
   },
   {
     title: "Weather, Mood & Occasion Aware",
     description:
       "LookMate adapts to rain, heat, or cold—and curates looks for class, work, dates, or nights out based on your vibe.",
-    image: "/images/feature-context.png",
+    image: "/images/4image.png",
   },
   {
     title: "Learns Your Style",
     description:
       "Keep, regenerate, and rate fits. LookMate trains on your feedback and history, improving recommendations every day.",
-    image: "/images/feature-learning.png",
+    image: "/images/5image.png",
   },
   {
     title: "Share, Compete, Inspire",
     description:
       "Join style challenges, post fits, and climb leaderboards. Discover ideas from a community that keeps you leveling up.",
-    image: "/images/feature-community.png",
+    image: "/images/6image.png",
   },
 ];
 
@@ -117,29 +117,6 @@ export default function Features() {
             </motion.div>
           );
         })}
-
-        {/* CTA: Mobile note */}
-        <motion.div
-          className="text-center mt-6"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          <h3 className="text-2xl md:text-3xl font-bold text-soft-white mb-4">
-            Mobile app is coming soon.
-          </h3>
-          <p className="text-soft-white text-lg opacity-80 mb-8">
-            Be the first to try LookMate on iOS &amp; Android.
-          </p>
-          <motion.a
-            href="#waitlist"
-            className="px-8 py-3 bg-gradient-to-r from-royal-purple to-electric-cyan text-soft-white rounded-full text-lg font-semibold shadow-md hover:shadow-lg transition-all"
-            whileHover={{ scale: 1.05 }}
-          >
-            Join the Waitlist
-          </motion.a>
-        </motion.div>
       </div>
     </section>
   );

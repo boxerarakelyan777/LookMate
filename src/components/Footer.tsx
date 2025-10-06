@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
               <SocialIcon href="https://www.instagram.com/lookmateai/" icon={<FaInstagram />} />
             </div>
           </div>
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-4 text-electric-cyan">Quick Links</h3>
             <ul className="space-y-2">
               <FooterLink href="#features">Features</FooterLink>
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
               <FooterLink href="/terms">Terms of Service</FooterLink>
               <FooterLink href="/cookie-policy">Cookie Policy</FooterLink>
             </ul>
-          </div>
+          </div> */}
         </div>
         <hr className="my-8 border-slate-gray/30" />
         <div className="flex flex-col md:flex-row justify-between items-center">

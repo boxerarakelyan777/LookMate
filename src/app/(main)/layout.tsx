@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import Navbar from "../../components/Navbar";
+import dynamic from "next/dynamic";
+import { GoogleTagManager } from "@next/third-parties/google";
+
 const inter = Inter({ subsets: ["latin"] });
-import Footer from "../../components/Footer";
-import { GoogleTagManager } from '@next/third-parties/google';
-import { ClerkProvider } from "@clerk/nextjs";
+
+// Client-only providers and chrome:
+const ClientProviders = dynamic(() => import("../../components/ClientProviders"), { ssr: false });
+const Navbar = dynamic(() => import("../../components/Navbar"), { ssr: false });
+const Footer = dynamic(() => import("../../components/Footer"), { ssr: false });
 
 export const metadata: Metadata = {
   title: "LookMate: AI Outfit Stylist & Wardrobe Assistant",
-  description: "LookMate is your personal AI stylist, transforming your wardrobe into endless outfit possibilities. Whether you're heading to class, a night out, or just hanging with friends, LookMate instantly suggests the perfect outfit based on your clothing, weather conditions, and upcoming events. Upload your wardrobe, set your style preferences, and let LookMate do the rest – saving you time and keeping you stylish every day. Join the waitlist now and be among the first to experience the future of fashion!",
+  description:
+    "LookMate is your personal AI stylist, transforming your wardrobe into endless outfit possibilities. Join the waitlist for our upcoming mobile app.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
     <html lang="en">
       <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -29,11 +29,12 @@ export default function RootLayout({
         <GoogleTagManager gtmId="GTM-W53R9WWP" />
       </head>
       <body className={inter.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <ClientProviders>
+          <Navbar />
+          {children}
+          <Footer />
+        </ClientProviders>
       </body>
     </html>
-    </ClerkProvider>
   );
 }

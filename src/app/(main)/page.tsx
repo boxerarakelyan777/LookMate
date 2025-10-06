@@ -1,41 +1,18 @@
-import React from "react";
-import dynamic from 'next/dynamic';
-import LoadingSpinner from "../../components/LoadingSpinner"; // You'll need to create this component
+import dynamic from "next/dynamic";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
-// Dynamically import components with loading fallbacks
-const HeroSection = dynamic(() => import("../../components/Hero"), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-});
-
-const Features = dynamic(() => import("../../components/Features"), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-});
-
-const Pricing = dynamic(() => import("../../components/Pricing"), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-});
-
-const ContactForm = dynamic(() => import("../../components/Contact"), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-});
-
-const Chatbot = dynamic(() => import('../../components/Chatbot'), {
-  loading: () => <LoadingSpinner />,
-  ssr: false
-});
+const HeroSection = dynamic(() => import("../../components/Hero"),       { ssr: false, loading: () => <LoadingSpinner/> });
+const Features    = dynamic(() => import("../../components/FeaturesClient"), { ssr: false, loading: () => <LoadingSpinner/> });
+const ComingSoon  = dynamic(() => import("../../components/ComingSoon"), { ssr: false, loading: () => <LoadingSpinner/> });
+const ContactForm = dynamic(() => import("../../components/Contact"),    { ssr: false, loading: () => <LoadingSpinner/> });
 
 export default function Home() {
   return (
     <>
       <HeroSection />
       <Features />
-      <Pricing />
+      <ComingSoon />
       <ContactForm />
-      <Chatbot />
     </>
   );
 }

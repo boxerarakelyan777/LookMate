@@ -13,7 +13,7 @@ const Navbar = () => {
     setIsClient(true);
   }, []);
 
-  const navItems = ['Features', 'Pricing', 'Contact'];
+  const navItems = ['Features'];
 
   return (
     <nav className="bg-midnight-black text-soft-white">
@@ -42,7 +42,7 @@ const Navbar = () => {
         </div>
 
         {/* Sign Up Button / Dashboard Button / User Button / Billing Button */}
-        {isClient && (
+        {/* {isClient && (
           <div className="hidden md:flex items-center space-x-4">
             <SignedOut>
               <motion.div whileHover={{ scale: 1.05 }}>
@@ -70,7 +70,7 @@ const Navbar = () => {
               />
             </SignedIn>
           </div>
-        )}
+        )} */}
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
@@ -117,7 +117,7 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          {isClient && (
+          {/* {isClient && (
             <div className="px-2 pt-2 pb-3 space-y-2">
               <SignedOut>
                 <SignInButton mode="modal">
@@ -143,7 +143,7 @@ const Navbar = () => {
                 </div>
               </SignedIn>
             </div>
-          )}
+          )} */}
         </motion.div>
       )}
     </nav>

@@ -1,29 +1,37 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isProtectedRoute = createRouteMatcher([
-  '/dashboard(.*)',
-  '/outfit-generator(.*)',
-  '/saved-outfits(.*)',
-  '/wardrobe(.*)'
-]);
+// Allow only the landing page and framework/static assets
+const ALLOWED_PATHS = [
+  "/",                // landing page
+  "/_next",           // Next internals
+  "/favicon.ico",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/images",          // your hero/feature images
+  "/manifest.webmanifest",
+  "/apple-touch-icon.png",
+  "/favicon-32x32.png",
+  "/favicon-16x16.png",
+];
 
-export default clerkMiddleware((auth, req) => {
-  if (isProtectedRoute(req)) {
-    const userId = auth().userId;
-    if (!userId) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
-    }
+function isAllowed(pathname: string) {
+  return ALLOWED_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"));
+}
+
+export function middleware(req: Request) {
+  const url = new URL(req.url);
+
+  if (!isAllowed(url.pathname)) {
+    url.pathname = "/";
+    return NextResponse.rewrite(url);
   }
 
   return NextResponse.next();
-});
+}
 
+// Run on everything except static files
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
-    '/(api|trpc)(.*)',
   ],
 };
